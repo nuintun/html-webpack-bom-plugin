@@ -1,0 +1,23 @@
+{
+  "name": "html-webpack-bom-plugin",
+  "version": "0.0.1",
+  "description": "Add utf8 BOM for the html file.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nuintun/html-webpack-bom-plugin.git"
+  },
+  "keywords": [
+    "webpack",
+    "plugin",
+    "html-webpack-plugin",
+    "BOM",
+    "UTF8-BOM"
+  ],
+  "author": "nuintun",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nuintun/html-webpack-bom-plugin/issues"
+  },
+  "homepage": "https://github.com/nuintun/html-webpack-bom-plugin#readme"
+}
