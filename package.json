@@ -1,6 +1,6 @@
 {
   "name": "html-webpack-bom-plugin",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "Add utf8 BOM for the html file.",
   "main": "index.js",
   "repository": {
