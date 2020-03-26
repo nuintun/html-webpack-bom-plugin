@@ -7,6 +7,8 @@
 
 'use strict';
 
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 // BOM
 const BOM = Buffer.from([0xef, 0xbb, 0xbf]);
 
@@ -25,11 +27,9 @@ function unixify(path) {
  */
 class HTMLWebpackBOMPlugin {
   /**
-   * @constructor
+   * @property {string} name
    */
-  constructor() {
-    this.name = 'HTMLWebpackBOMPlugin';
-  }
+  name = 'HTMLWebpackBOMPlugin';
 
   /**
    * @method addBOM
@@ -59,25 +59,15 @@ class HTMLWebpackBOMPlugin {
    * @param {Compiler} compiler
    */
   apply(compiler) {
-    // Support webpack 4
-    if (compiler.hooks) {
-      // Get name
-      const name = this.name;
+    // Get name
+    const name = this.name;
 
-      // Hook into the html-webpack-plugin after emit
-      compiler.hooks.compilation.tap(name, compilation => {
-        compilation.hooks.htmlWebpackPluginAfterEmit.tapAsync(name, ({ outputName }, next) => {
-          this.addBOM(compilation, outputName, next);
-        });
+    // Hook into the html-webpack-plugin after emit
+    compiler.hooks.compilation.tap(name, compilation => {
+      HtmlWebpackPlugin.getHooks(compilation).afterEmit.tapAsync(name, ({ outputName }, next) => {
+        this.addBOM(compilation, outputName, next);
       });
-    } else {
-      // Hook into the html-webpack-plugin after emit
-      compiler.plugin('compilation', compilation => {
-        compilation.plugin('html-webpack-plugin-after-emit', ({ outputName }, next) => {
-          this.addBOM(compilation, outputName, next);
-        });
-      });
-    }
+    });
   }
 }
 
